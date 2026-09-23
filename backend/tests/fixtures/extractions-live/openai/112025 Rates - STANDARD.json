@@ -1,0 +1,745 @@
+{
+  "lender_name": "Falcon Equipment Finance",
+  "contact_name": "Emma Tickner",
+  "contact_email": "ETickner@FalconEquipmentFinance.com",
+  "contact_phone": "651.332.6517",
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "Minimum time in business",
+      "category": "business",
+      "severity": "hard",
+      "field": "years_in_business",
+      "operator": "gte",
+      "value": {
+        "number": 3.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "3+ Years in business\u2014references verified"
+    },
+    {
+      "kind": "simple",
+      "label": "Minimum FICO",
+      "category": "credit",
+      "severity": "hard",
+      "field": "fico_score",
+      "operator": "gte",
+      "value": {
+        "number": 680.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Minimum FICO Requirement 680+"
+    },
+    {
+      "kind": "simple",
+      "label": "Minimum PayNet",
+      "category": "credit",
+      "severity": "hard",
+      "field": "paynet_score",
+      "operator": "gte",
+      "value": {
+        "number": 660.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Minimum PayNet Requirement 660+"
+    },
+    {
+      "kind": "simple",
+      "label": "Comparable commercial installment credit at least 70% of requested amount",
+      "category": "credit",
+      "severity": "hard",
+      "field": "comparable_credit_pct",
+      "operator": "gte",
+      "value": {
+        "number": 70.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Comparable commercial installment credit repayment at least 70% of the requested amount"
+    },
+    {
+      "kind": "simple",
+      "label": "Bankruptcy seasoning",
+      "category": "history",
+      "severity": "hard",
+      "field": "years_since_bankruptcy_discharge",
+      "operator": "gte",
+      "value": {
+        "number": 15.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "has_bankruptcy",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "If borrower has a bankruptcy"
+        }
+      ],
+      "source_quote": "Bankruptcies dismissed or discharged 15+ years ago"
+    },
+    {
+      "kind": "simple",
+      "label": "Trucking operators must operate at least 5 trucks",
+      "category": "business",
+      "severity": "hard",
+      "field": "trucks_operated",
+      "operator": "gte",
+      "value": {
+        "number": 5.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        }
+      ],
+      "source_quote": "All Trucking: A/B CREDITS ONLY \u2022 They are currently operating 5+ trucks"
+    },
+    {
+      "kind": "simple",
+      "label": "Trucking minimum time in business",
+      "category": "business",
+      "severity": "hard",
+      "field": "years_in_business",
+      "operator": "gte",
+      "value": {
+        "number": 5.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        }
+      ],
+      "source_quote": "All Trucking: A/B CREDITS ONLY \u2022 Must have 5+ years in business"
+    },
+    {
+      "kind": "simple",
+      "label": "Trucking minimum FICO",
+      "category": "credit",
+      "severity": "hard",
+      "field": "fico_score",
+      "operator": "gte",
+      "value": {
+        "number": 700.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        }
+      ],
+      "source_quote": "All Trucking: A/B CREDITS ONLY \u2022 700 FICO score or better, & 680 or better Paynet Masterscore"
+    },
+    {
+      "kind": "simple",
+      "label": "Trucking minimum PayNet Masterscore",
+      "category": "credit",
+      "severity": "hard",
+      "field": "paynet_score",
+      "operator": "gte",
+      "value": {
+        "number": 680.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        }
+      ],
+      "source_quote": "All Trucking: A/B CREDITS ONLY \u2022 700 FICO score or better, & 680 or better Paynet Masterscore"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 truck and trailer age limit for trucking",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_age_years",
+      "operator": "lte",
+      "value": {
+        "number": 10.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        },
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck",
+              "trailer"
+            ],
+            "range": null
+          },
+          "label": "Class 8 trucks and trailers"
+        }
+      ],
+      "source_quote": "Class 8 trucks and trailers need to be 10 years and newer"
+    },
+    {
+      "kind": "simple",
+      "label": "Reefer trailer age limit for trucking",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_age_years",
+      "operator": "lt",
+      "value": {
+        "number": 7.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "All Trucking"
+        },
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "reefer_trailer"
+            ],
+            "range": null
+          },
+          "label": "Reefer trailers"
+        }
+      ],
+      "source_quote": "reefer trailers under 7 years old"
+    },
+    {
+      "kind": "simple",
+      "label": "App-only ceiling for trucking and logging industries",
+      "category": "loan",
+      "severity": "soft",
+      "field": "loan_amount",
+      "operator": "lte",
+      "value": {
+        "number": 150000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking",
+              "logging"
+            ],
+            "range": null
+          },
+          "label": "Trucking and logging related industries"
+        }
+      ],
+      "source_quote": "App only up to $150,000 on all trucking and logging related industries"
+    },
+    {
+      "kind": "simple",
+      "label": "App-only ceiling for commercial transactions",
+      "category": "loan",
+      "severity": "soft",
+      "field": "loan_amount",
+      "operator": "lte",
+      "value": {
+        "number": 250000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "App only up to $250,000 on all Commercial related Transactions"
+    },
+    {
+      "kind": "simple",
+      "label": "App-only ceiling for manufacturing equipment transactions",
+      "category": "loan",
+      "severity": "soft",
+      "field": "loan_amount",
+      "operator": "lte",
+      "value": {
+        "number": 350000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "machine_tools",
+              "woodworking"
+            ],
+            "range": null
+          },
+          "label": "Manufacturing related transactions"
+        }
+      ],
+      "source_quote": "App only up to $350,000 on all Manufacturing related Transactions (Machine Tools, Woodworking)"
+    },
+    {
+      "kind": "simple",
+      "label": "Increased app-only ceiling with 12+ months clean payment history",
+      "category": "loan",
+      "severity": "soft",
+      "field": "loan_amount",
+      "operator": "lte",
+      "value": {
+        "number": 350000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "clean_payment_history_months",
+          "operator": "gte",
+          "value": {
+            "number": 12.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "12+ months current clean payment history"
+        }
+      ],
+      "source_quote": "App only to increase up to $100,000 more for customers with 12+ months of current clean payment history, maxing out at $350,000"
+    },
+    {
+      "kind": "simple",
+      "label": "Increased trucking/logging app-only ceiling with 12+ months clean payment history",
+      "category": "loan",
+      "severity": "soft",
+      "field": "loan_amount",
+      "operator": "lte",
+      "value": {
+        "number": 250000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking",
+              "logging"
+            ],
+            "range": null
+          },
+          "label": "Trucking/logging"
+        },
+        {
+          "field": "clean_payment_history_months",
+          "operator": "gte",
+          "value": {
+            "number": 12.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "12+ months current clean payment history"
+        }
+      ],
+      "source_quote": "maxing out at $350,000 (ie trucking up to $250,000)"
+    }
+  ],
+  "programs": [
+    {
+      "name": "A Credit Rating",
+      "rank": 1,
+      "description": "Most favorable published pricing tier. Credit criteria defining A rating were not provided.",
+      "applies_when": [],
+      "rules": [],
+      "details": [
+        {
+          "key": "Rates - $15,000 to $50,000 net financed",
+          "value": "9.00%"
+        },
+        {
+          "key": "Rates - $50,001 to $150,000 net financed",
+          "value": "8.25%"
+        },
+        {
+          "key": "Rates - above $150,000 net financed",
+          "value": "7.75%"
+        },
+        {
+          "key": "Documentation",
+          "value": "Application-only ceilings: $150,000 trucking/logging; $250,000 commercial; $350,000 manufacturing transactions (Machine Tools, Woodworking). With 12+ months current clean payment history, app-only limit may increase up to $100,000, capped at $350,000; trucking example capped at $250,000."
+        },
+        {
+          "key": "Buy rate adjustments",
+          "value": "Private party sale +1.00%; titled assets +0.50%; aged equipment +0.50% for every 15 years; $14,999 and below call for rates; soft collateral rates determined on market basis."
+        }
+      ]
+    },
+    {
+      "name": "B Credit Rating",
+      "rank": 2,
+      "description": "Second published pricing tier. Credit criteria defining B rating were not provided.",
+      "applies_when": [],
+      "rules": [],
+      "details": [
+        {
+          "key": "Rates - $15,000 to $50,000 net financed",
+          "value": "9.75%"
+        },
+        {
+          "key": "Rates - $50,001 to $150,000 net financed",
+          "value": "9.00%"
+        },
+        {
+          "key": "Rates - above $150,000 net financed",
+          "value": "8.25%"
+        },
+        {
+          "key": "Documentation",
+          "value": "Application-only ceilings: $150,000 trucking/logging; $250,000 commercial; $350,000 manufacturing transactions (Machine Tools, Woodworking). With 12+ months current clean payment history, app-only limit may increase up to $100,000, capped at $350,000; trucking example capped at $250,000."
+        },
+        {
+          "key": "Buy rate adjustments",
+          "value": "Private party sale +1.00%; titled assets +0.50%; aged equipment +0.50% for every 15 years; $14,999 and below call for rates; soft collateral rates determined on market basis."
+        }
+      ]
+    },
+    {
+      "name": "C Credit Rating",
+      "rank": 3,
+      "description": "Third published pricing tier. Not available for trucking per 'All Trucking: A/B credits only'. Credit criteria defining C rating were not provided.",
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "neq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "Not trucking"
+        }
+      ],
+      "rules": [],
+      "details": [
+        {
+          "key": "Rates - $15,000 to $50,000 net financed",
+          "value": "10.50%"
+        },
+        {
+          "key": "Rates - $50,001 to $150,000 net financed",
+          "value": "10.00%"
+        },
+        {
+          "key": "Rates - above $150,000 net financed",
+          "value": "9.00%"
+        },
+        {
+          "key": "Documentation",
+          "value": "Application-only ceilings: $150,000 trucking/logging; $250,000 commercial; $350,000 manufacturing transactions (Machine Tools, Woodworking). With 12+ months current clean payment history, app-only limit may increase up to $100,000, capped at $350,000; trucking example capped at $250,000."
+        },
+        {
+          "key": "Buy rate adjustments",
+          "value": "Private party sale +1.00%; titled assets +0.50%; aged equipment +0.50% for every 15 years; $14,999 and below call for rates; soft collateral rates determined on market basis."
+        }
+      ]
+    },
+    {
+      "name": "D Credit Rating",
+      "rank": 4,
+      "description": "Fourth published pricing tier. Not available for trucking per 'All Trucking: A/B credits only'. Credit criteria defining D rating were not provided.",
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "neq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "Not trucking"
+        }
+      ],
+      "rules": [],
+      "details": [
+        {
+          "key": "Rates - $15,000 to $50,000 net financed",
+          "value": "11.75%"
+        },
+        {
+          "key": "Rates - $50,001 to $150,000 net financed",
+          "value": "11.00%"
+        },
+        {
+          "key": "Rates - above $150,000 net financed",
+          "value": "10.00%"
+        },
+        {
+          "key": "Documentation",
+          "value": "Application-only ceilings: $150,000 trucking/logging; $250,000 commercial; $350,000 manufacturing transactions (Machine Tools, Woodworking). With 12+ months current clean payment history, app-only limit may increase up to $100,000, capped at $350,000; trucking example capped at $250,000."
+        },
+        {
+          "key": "Buy rate adjustments",
+          "value": "Private party sale +1.00%; titled assets +0.50%; aged equipment +0.50% for every 15 years; $14,999 and below call for rates; soft collateral rates determined on market basis."
+        }
+      ]
+    },
+    {
+      "name": "E Credit Rating",
+      "rank": 5,
+      "description": "Fifth published pricing tier. Not available for trucking per 'All Trucking: A/B credits only'. Credit criteria defining E rating were not provided.",
+      "applies_when": [
+        {
+          "field": "industry",
+          "operator": "neq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trucking"
+            ],
+            "range": null
+          },
+          "label": "Not trucking"
+        }
+      ],
+      "rules": [],
+      "details": [
+        {
+          "key": "Rates - $15,000 to $50,000 net financed",
+          "value": "13.75%"
+        },
+        {
+          "key": "Rates - $50,001 to $150,000 net financed",
+          "value": "13.00%"
+        },
+        {
+          "key": "Rates - above $150,000 net financed",
+          "value": "12.00%"
+        },
+        {
+          "key": "Documentation",
+          "value": "Application-only ceilings: $150,000 trucking/logging; $250,000 commercial; $350,000 manufacturing transactions (Machine Tools, Woodworking). With 12+ months current clean payment history, app-only limit may increase up to $100,000, capped at $350,000; trucking example capped at $250,000."
+        },
+        {
+          "key": "Buy rate adjustments",
+          "value": "Private party sale +1.00%; titled assets +0.50%; aged equipment +0.50% for every 15 years; $14,999 and below call for rates; soft collateral rates determined on market basis."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "A/B/C/D/E credit rating definitions",
+      "reason": "The document provides rate tiers by credit rating but does not define the underwriting criteria for assigning A, B, C, D, or E, except that trucking is A/B credits only.",
+      "suggestion": "Obtain Falcon's credit-rating matrix or add a catalog field for lender credit grade if grades are assigned outside the engine."
+    },
+    {
+      "item": "All Trucking: A/B credits only",
+      "reason": "There is no catalog field for lender credit rating. I modeled C, D, and E programs as not available for trucking and modeled the explicit trucking requirements as hard lender-level rules.",
+      "suggestion": "Confirm whether logging is also subject to A/B-only treatment or only trucking."
+    },
+    {
+      "item": "Commercial related transactions app-only limit",
+      "reason": "'Commercial related Transactions' is not defined and no catalog field directly identifies commercial vs manufacturing/trucking/logging transactions. I recorded a general soft loan_amount ceiling without an applies_when selector.",
+      "suggestion": "Define which industries/equipment categories count as commercial transactions for this document."
+    },
+    {
+      "item": "Manufacturing related transactions mapping",
+      "reason": "The document names 'Manufacturing related Transactions (Machine Tools, Woodworking)'. The catalog has equipment_category options for machine_tools and woodworking; I used those rather than industry=manufacturing because the parenthetical identifies equipment types.",
+      "suggestion": "Confirm whether all manufacturing industry deals, or only machine tools/woodworking equipment, qualify for the $350,000 app-only limit."
+    },
+    {
+      "item": "Bankruptcies dismissed or discharged",
+      "reason": "The catalog supports years_since_bankruptcy_discharge but not bankruptcy dismissal date. The rule was modeled using discharge seasoning only.",
+      "suggestion": "Add a field for years_since_bankruptcy_dismissal or use manual review for dismissed bankruptcies."
+    },
+    {
+      "item": "References verified",
+      "reason": "The guideline says '3+ Years in business\u2014references verified', but the catalog has no field for verified references.",
+      "suggestion": "Track verified references as a documentation/checklist item outside automated policy rules."
+    },
+    {
+      "item": "Comparable commercial installment credit repayment",
+      "reason": "The phrase could mean prior comparable credit originally financed/paid down to at least 70% of the requested amount. I mapped it to comparable_credit_pct >= 70 based on the available field.",
+      "suggestion": "Confirm exact calculation of comparable_credit_pct."
+    },
+    {
+      "item": "App-only increase for customers with 12+ months current clean payment history",
+      "reason": "The phrase implies an existing customer/current finance relationship, but the catalog only has clean_payment_history_months and no current-customer flag. I modeled only the 12-month clean payment condition.",
+      "suggestion": "Add a current_customer or existing_falcon_customer field if required."
+    },
+    {
+      "item": "Class 8 trucks and trailers age rule",
+      "reason": "The wording says 'Class 8 trucks and trailers need to be 10 years and newer'. I mapped this to equipment_category in class_8_truck and trailer, while reefer trailers have a separate stricter rule.",
+      "suggestion": "Confirm whether the 10-year rule applies to all non-reefer trailers or only trailers paired with Class 8 tractors."
+    },
+    {
+      "item": "Rates and buy-rate adjustments",
+      "reason": "Rates, buy-rate adjustments, call-for-rates under $14,999, and soft-collateral market pricing are pricing/display items rather than credit rules per extraction instructions.",
+      "suggestion": "Store these in pricing configuration if the underwriting engine does not use program details."
+    }
+  ]
+}

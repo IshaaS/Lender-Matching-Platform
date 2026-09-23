@@ -1,0 +1,50 @@
+# Local infrastructure. The API and web app run on the host (see Makefile);
+# this file provides Postgres and Hatchet-lite.
+#
+#   docker compose up -d            -> Postgres (5433) + Hatchet (dashboard 8888, gRPC 7077)
+#
+# To use a Postgres you already run locally instead, set DATABASE_URL in .env.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: lender_matching
+      POSTGRES_PASSWORD: lender_matching
+      POSTGRES_DB: lender_matching
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./infra/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lender_matching -d lender_matching"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  hatchet:
+    image: ghcr.io/hatchet-dev/hatchet/hatchet-lite:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8888:8888"
+      - "7077:7077"
+    environment:
+      DATABASE_URL: "postgresql://lender_matching:lender_matching@db:5432/hatchet?sslmode=disable"
+      SERVER_AUTH_COOKIE_DOMAIN: localhost
+      SERVER_AUTH_COOKIE_INSECURE: "t"
+      SERVER_GRPC_BIND_ADDRESS: "0.0.0.0"
+      SERVER_GRPC_INSECURE: "t"
+      SERVER_GRPC_BROADCAST_ADDRESS: localhost:7077
+      SERVER_GRPC_PORT: "7077"
+      SERVER_URL: http://localhost:8888
+      SERVER_AUTH_SET_EMAIL_VERIFIED: "t"
+      SERVER_DEFAULT_ENGINE_VERSION: "V1"
+      SERVER_INTERNAL_CLIENT_INTERNAL_GRPC_BROADCAST_ADDRESS: localhost:7077
+    volumes:
+      - hatchet_config:/config
+
+volumes:
+  db_data:
+  hatchet_config:

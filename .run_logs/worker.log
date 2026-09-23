@@ -1,0 +1,82 @@
+cd backend && uv run python -m app.workflows.worker
+[INFO]	🪓 -- 2026-09-23 01:10:28,595 - ------------------------------------------
+[INFO]	🪓 -- 2026-09-23 01:10:28,595 - starting hatchet...
+[INFO]	🪓 -- 2026-09-23 01:10:29,378 - starting action runner...
+[INFO]	🪓 -- 2026-09-23 01:10:29,379 - 'lender-matching-worker' started, waiting for tasks...
+[INFO]	🪓 -- 2026-09-23 01:11:41,746 - rx: start step run: 39ba197a-2c82-43e5-9dc0-b28511153047/underwriting:prepare
+[INFO]	🪓 -- 2026-09-23 01:11:41,750 - run: start step: underwriting:prepare/39ba197a-2c82-43e5-9dc0-b28511153047
+[INFO]	🪓 -- 2026-09-23 01:11:41,852 - Derived 50 features; 4 lenders to evaluate
+[INFO]	🪓 -- 2026-09-23 01:11:41,853 - finished step run: underwriting:prepare/39ba197a-2c82-43e5-9dc0-b28511153047
+[INFO]	🪓 -- 2026-09-23 01:11:41,991 - rx: start step run: 0412c096-d2a2-445b-baeb-cd34ea89c470/underwriting:evaluate_lenders
+[INFO]	🪓 -- 2026-09-23 01:11:41,993 - run: start step: underwriting:evaluate_lenders/0412c096-d2a2-445b-baeb-cd34ea89c470
+[INFO]	🪓 -- 2026-09-23 01:11:42,225 - rx: start step run: ee60938b-4096-43ae-aaee-23d39b9ba177/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:11:42,226 - run: start step: evaluate-lender:evaluate/ee60938b-4096-43ae-aaee-23d39b9ba177
+[INFO]	🪓 -- 2026-09-23 01:11:42,227 - rx: start step run: 1af3b9aa-3230-42c8-a9e8-97f1827a96d5/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:11:42,228 - Evaluating Falcon Equipment Finance (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:11:42,229 - rx: start step run: 9d15fe8f-7d9a-4fcc-97c0-c3cf86a2c0b0/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:11:42,231 - run: start step: evaluate-lender:evaluate/1af3b9aa-3230-42c8-a9e8-97f1827a96d5
+[INFO]	🪓 -- 2026-09-23 01:11:42,234 - Evaluating Apex Commercial Capital (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:11:42,241 - run: start step: evaluate-lender:evaluate/9d15fe8f-7d9a-4fcc-97c0-c3cf86a2c0b0
+[INFO]	🪓 -- 2026-09-23 01:11:42,241 - rx: start step run: 6dc23895-db1a-410d-bc4c-5c55842fe001/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:11:42,242 - Evaluating Citizens Bank (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:11:42,243 - run: start step: evaluate-lender:evaluate/6dc23895-db1a-410d-bc4c-5c55842fe001
+[INFO]	🪓 -- 2026-09-23 01:11:42,246 - Evaluating Advantage+ Financing (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:11:42,248 - finished step run: evaluate-lender:evaluate/ee60938b-4096-43ae-aaee-23d39b9ba177
+[INFO]	🪓 -- 2026-09-23 01:11:42,258 - finished step run: evaluate-lender:evaluate/1af3b9aa-3230-42c8-a9e8-97f1827a96d5
+[INFO]	🪓 -- 2026-09-23 01:11:42,262 - finished step run: evaluate-lender:evaluate/9d15fe8f-7d9a-4fcc-97c0-c3cf86a2c0b0
+[INFO]	🪓 -- 2026-09-23 01:11:42,264 - finished step run: evaluate-lender:evaluate/6dc23895-db1a-410d-bc4c-5c55842fe001
+[INFO]	🪓 -- 2026-09-23 01:11:43,559 - finished step run: underwriting:evaluate_lenders/0412c096-d2a2-445b-baeb-cd34ea89c470
+[INFO]	🪓 -- 2026-09-23 01:11:43,701 - rx: start step run: 42a773bd-116d-47c6-92e4-ef4bb965903e/underwriting:persist
+[INFO]	🪓 -- 2026-09-23 01:11:43,704 - run: start step: underwriting:persist/42a773bd-116d-47c6-92e4-ef4bb965903e
+[INFO]	🪓 -- 2026-09-23 01:11:43,771 - Persisted 4 results; 2 eligible
+[INFO]	🪓 -- 2026-09-23 01:11:43,772 - finished step run: underwriting:persist/42a773bd-116d-47c6-92e4-ef4bb965903e
+[INFO]	🪓 -- 2026-09-23 01:16:49,296 - rx: start step run: 5b2826d2-9c76-470b-a247-7e071a8ae9bd/underwriting:prepare
+[INFO]	🪓 -- 2026-09-23 01:16:49,305 - run: start step: underwriting:prepare/5b2826d2-9c76-470b-a247-7e071a8ae9bd
+[INFO]	🪓 -- 2026-09-23 01:16:49,439 - Derived 50 features; 4 lenders to evaluate
+[INFO]	🪓 -- 2026-09-23 01:16:49,440 - finished step run: underwriting:prepare/5b2826d2-9c76-470b-a247-7e071a8ae9bd
+[INFO]	🪓 -- 2026-09-23 01:16:49,591 - rx: start step run: 82c636ac-9105-427d-aea9-b6c9a01a01e0/underwriting:evaluate_lenders
+[INFO]	🪓 -- 2026-09-23 01:16:49,592 - run: start step: underwriting:evaluate_lenders/82c636ac-9105-427d-aea9-b6c9a01a01e0
+[INFO]	🪓 -- 2026-09-23 01:16:49,814 - rx: start step run: f2926374-f23c-49a0-b675-0c708f8d640a/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:16:49,816 - run: start step: evaluate-lender:evaluate/f2926374-f23c-49a0-b675-0c708f8d640a
+[INFO]	🪓 -- 2026-09-23 01:16:49,817 - rx: start step run: e91be1fe-0402-49bd-b333-062ba8143163/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:16:49,818 - Evaluating Apex Commercial Capital (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:16:49,819 - run: start step: evaluate-lender:evaluate/e91be1fe-0402-49bd-b333-062ba8143163
+[INFO]	🪓 -- 2026-09-23 01:16:49,819 - rx: start step run: 28ff06d4-2c1a-4074-a14d-870a548ba41b/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:16:49,820 - Evaluating Advantage+ Financing (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:16:49,821 - run: start step: evaluate-lender:evaluate/28ff06d4-2c1a-4074-a14d-870a548ba41b
+[INFO]	🪓 -- 2026-09-23 01:16:49,822 - rx: start step run: 412b2bc9-5d53-483b-b96e-ac16658ca2a9/evaluate-lender:evaluate
+[INFO]	🪓 -- 2026-09-23 01:16:49,823 - Evaluating Falcon Equipment Finance (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:16:49,825 - run: start step: evaluate-lender:evaluate/412b2bc9-5d53-483b-b96e-ac16658ca2a9
+[INFO]	🪓 -- 2026-09-23 01:16:49,825 - Evaluating Citizens Bank (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:16:49,837 - finished step run: evaluate-lender:evaluate/28ff06d4-2c1a-4074-a14d-870a548ba41b
+[INFO]	🪓 -- 2026-09-23 01:16:49,839 - finished step run: evaluate-lender:evaluate/f2926374-f23c-49a0-b675-0c708f8d640a
+[INFO]	🪓 -- 2026-09-23 01:16:49,840 - finished step run: evaluate-lender:evaluate/e91be1fe-0402-49bd-b333-062ba8143163
+[INFO]	🪓 -- 2026-09-23 01:16:49,841 - finished step run: evaluate-lender:evaluate/412b2bc9-5d53-483b-b96e-ac16658ca2a9
+[INFO]	🪓 -- 2026-09-23 01:16:49,956 - finished step run: underwriting:evaluate_lenders/82c636ac-9105-427d-aea9-b6c9a01a01e0
+[INFO]	🪓 -- 2026-09-23 01:16:50,115 - rx: start step run: 61bf1c46-6cf9-4c3d-aa11-4621afa445dd/underwriting:persist
+[INFO]	🪓 -- 2026-09-23 01:16:50,117 - run: start step: underwriting:persist/61bf1c46-6cf9-4c3d-aa11-4621afa445dd
+[INFO]	🪓 -- 2026-09-23 01:16:50,270 - Persisted 4 results; 3 eligible
+[INFO]	🪓 -- 2026-09-23 01:16:50,270 - finished step run: underwriting:persist/61bf1c46-6cf9-4c3d-aa11-4621afa445dd
+[INFO]	🪓 -- 2026-09-23 01:25:39,803 - rx: start step run: bcc0633c-9a75-46cb-b7c1-adca4270ba91/ingestion:prepare
+[INFO]	🪓 -- 2026-09-23 01:25:39,808 - run: start step: ingestion:prepare/bcc0633c-9a75-46cb-b7c1-adca4270ba91
+[INFO]	🪓 -- 2026-09-23 01:25:39,862 - Read 1248 characters from EF Credit Box 4.14.2025.pdf
+[INFO]	🪓 -- 2026-09-23 01:25:39,864 - finished step run: ingestion:prepare/bcc0633c-9a75-46cb-b7c1-adca4270ba91
+[INFO]	🪓 -- 2026-09-23 01:25:39,995 - rx: start step run: 752ff80f-6493-4c1b-a50f-f02a7e76bbf0/ingestion:extract
+[INFO]	🪓 -- 2026-09-23 01:25:39,997 - run: start step: ingestion:extract/752ff80f-6493-4c1b-a50f-f02a7e76bbf0
+[INFO]	🪓 -- 2026-09-23 01:25:40,772 - Extracting with the claude extractor (attempt 1)
+[INFO]	🪓 -- 2026-09-23 01:26:50,395 - finished step run: ingestion:extract/752ff80f-6493-4c1b-a50f-f02a7e76bbf0
+[INFO]	🪓 -- 2026-09-23 01:26:50,545 - rx: start step run: ef12dde7-9a87-4fe7-9b60-35da26b5ce18/ingestion:draft
+[INFO]	🪓 -- 2026-09-23 01:26:50,548 - run: start step: ingestion:draft/ef12dde7-9a87-4fe7-9b60-35da26b5ce18
+[INFO]	🪓 -- 2026-09-23 01:26:50,725 - Draft v1: 9 programs, 29 rules, 10 items to review
+[INFO]	🪓 -- 2026-09-23 01:26:50,726 - finished step run: ingestion:draft/ef12dde7-9a87-4fe7-9b60-35da26b5ce18
+[WARNING]	🪓 -- 2026-09-23 01:41:42,189 - interrupted read_with_interrupt task of listener
+make: *** [worker] Terminated: 15
+[INFO]	🪓 -- 2026-09-23 01:43:17,793 - received signal SIGTERM...
+[INFO]	🪓 -- 2026-09-23 01:43:17,793 - received signal SIGTERM...
+[INFO]	🪓 -- 2026-09-23 01:43:18,485 - action listener closed
+[WARNING]	🪓 -- 2026-09-23 01:43:18,485 - interrupted read_with_interrupt task of action listener
+[INFO]	🪓 -- 2026-09-23 01:43:18,487 - action loop closed
+[WARNING]	🪓 -- 2026-09-23 01:43:23,241 - failed to send heartbeat (2): Heartbeat rejected: worker stream is not active: cc64b340-932b-4c9d-b2d9-d09bf1e2b715
+[INFO]	🪓 -- 2026-09-23 01:43:23,499 - closing worker 'lender-matching-worker'...
+[INFO]	🪓 -- 2026-09-23 01:43:23,501 - pausing task assignment...
+[INFO]	🪓 -- 2026-09-23 01:43:23,501 - 👋

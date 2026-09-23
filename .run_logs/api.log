@@ -1,0 +1,138 @@
+cd backend && uv run uvicorn app.main:app --reload --port 8000
+INFO:     Will watch for changes in these directories: ['/Users/ishasasturkar/Downloads/Lender-Matching-Platform/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [2715] using WatchFiles
+INFO:     Started server process [2718]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50291 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50360 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50363 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50372 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50369 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50370 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50376 - "POST /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:50390 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50388 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50389 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50401 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50398 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50400 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50404 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50412 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50415 - "GET /api/applications/841a319a-73ea-498d-a452-d17cf8e4db00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50418 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50425 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50428 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50433 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50436 - "GET /api/samples HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50439 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50442 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50445 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50449 - "POST /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50455 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50454 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50462 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50461 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50464 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50467 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50470 - "POST /api/applications HTTP/1.1" 201 Created
+INFO:     127.0.0.1:50473 - "POST /api/applications/532e5b8b-3e10-4bbd-9126-f72a5f7bb514/submit HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:50476 - "GET /api/applications/532e5b8b-3e10-4bbd-9126-f72a5f7bb514 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50481 - "GET /api/applications/532e5b8b-3e10-4bbd-9126-f72a5f7bb514/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50482 - "GET /api/applications/532e5b8b-3e10-4bbd-9126-f72a5f7bb514 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50485 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50493 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50492 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50494 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50498 - "POST /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:50507 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50506 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50508 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50514 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50515 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50517 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50520 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50524 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50527 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50537 - "GET /api/runs/ea8594a9-a982-42e7-a172-662184f9a6cc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50538 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50534 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50541 - "GET /api/results/be549226-3557-457e-85f1-4a430ca762a5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50552 - "GET /api/results/a2a12295-6a53-4bc1-8ddc-1201e263053b HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50562 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50560 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50568 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50571 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50574 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50579 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50580 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50583 - "GET /api/policy-versions/0e4f89b0-5551-485b-9f0d-74d6269c1aff HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50586 - "POST /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/draft HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50592 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50590 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50595 - "GET /api/policy-versions/187e0114-a0ad-4ecb-9569-c2406bf35595 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50600 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50601 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50604 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50609 - "DELETE /api/policy-versions/187e0114-a0ad-4ecb-9569-c2406bf35595 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:50616 - "GET /api/policy-versions/187e0114-a0ad-4ecb-9569-c2406bf35595 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50618 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50617 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50621 - "GET /api/policy-versions/0e4f89b0-5551-485b-9f0d-74d6269c1aff HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50627 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50625 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50631 - "GET /api/lenders/36fa58cc-8953-4d87-84a9-6164ca7b6998/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50639 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50640 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50644 - "POST /api/ingestion HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:50649 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50650 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50655 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50658 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50661 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50665 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50668 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50671 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50674 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50677 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50680 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50683 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50686 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50689 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50692 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50695 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50698 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50701 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50704 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50707 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50710 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50713 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50716 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50719 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50722 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50725 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50728 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50731 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50734 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50737 - "GET /api/ingestion HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50750 - "GET /api/lenders/0334fb0c-5c30-4705-9502-fc716026a9b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50755 - "GET /api/lenders/0334fb0c-5c30-4705-9502-fc716026a9b2/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50756 - "GET /api/policy-versions/57e68758-d243-46dd-b13e-f65bf2b7f52c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50760 - "GET /api/lenders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50851 - "GET /api/applications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50854 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50863 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50862 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/features HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50861 - "GET /api/applications/ed560111-1fed-4ef7-bed9-d684e6303d00/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50866 - "GET /api/runs/ea8594a9-a982-42e7-a172-662184f9a6cc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50869 - "GET /api/results/be549226-3557-457e-85f1-4a430ca762a5 HTTP/1.1" 200 OK
+make: *** [api] Terminated: 15
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2718]
+INFO:     Stopping reloader process [2715]

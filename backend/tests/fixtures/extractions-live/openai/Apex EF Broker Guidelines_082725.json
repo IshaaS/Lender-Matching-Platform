@@ -1,0 +1,1389 @@
+{
+  "lender_name": "Apex Commercial Capital",
+  "contact_name": "Stephanie (Hall) Costa, CLFP",
+  "contact_email": "scosta@apexcommercial.com",
+  "contact_phone": "267-470-3118",
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "Excluded states",
+      "category": "geography",
+      "severity": "hard",
+      "field": "business_state",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "CA",
+          "NV",
+          "ND",
+          "VT"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Apex does not lend in: CA, NV, ND, VT"
+    },
+    {
+      "kind": "simple",
+      "label": "Excluded industries",
+      "category": "industry",
+      "severity": "hard",
+      "field": "industry",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "cannabis",
+          "gaming_gambling",
+          "church_nonprofit",
+          "beauty_salon",
+          "oil_gas",
+          "trucking"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Excluded Industry/Equipment List ... Cannabis; Casino/Gambling; Churches/Non-profits; Nail Salons; Petroleum Industry (Oil/Gas); Trucking (Local & Long Haul)"
+    },
+    {
+      "kind": "simple",
+      "label": "Excluded equipment categories",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_category",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "aircraft_boat",
+          "atm",
+          "audio_visual",
+          "office_copier",
+          "electric_vehicle",
+          "furniture",
+          "kiosk",
+          "leasehold_improvements",
+          "logging",
+          "signage",
+          "tanning_bed"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Excluded Industry/Equipment List ... Aircrafts/Boats; ATMs; Audio/Visual; Copiers; Electric Vehicles; Furniture; Kiosks; Leasehold Improvements; Logging Equipment; Signage; Tanning Beds"
+    },
+    {
+      "kind": "simple",
+      "label": "Maximum equipment age under standard guidelines",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_age_years",
+      "operator": "lte",
+      "value": {
+        "number": 15.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Equipment over 15 years old"
+    },
+    {
+      "kind": "simple",
+      "label": "Excluded transaction types",
+      "category": "loan",
+      "severity": "hard",
+      "field": "transaction_type",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "private_party",
+          "sale_leaseback"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Excluded Industry/Equipment List ... Private Party Sales; Sale-Leasebacks"
+    },
+    {
+      "kind": "simple",
+      "label": "Maximum soft costs",
+      "category": "loan",
+      "severity": "hard",
+      "field": "soft_cost_pct",
+      "operator": "lte",
+      "value": {
+        "number": 25.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "25% Max soft costs"
+    },
+    {
+      "kind": "simple",
+      "label": "Comparable borrowing required for $50,000-$100,000 requests",
+      "category": "credit",
+      "severity": "hard",
+      "field": "comparable_credit_pct",
+      "operator": "gte",
+      "value": {
+        "number": 50.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              50000.0,
+              100000.0
+            ]
+          },
+          "label": "request is $50,000-$100,000"
+        }
+      ],
+      "source_quote": "Comparable business borrowing required for requests $50,000 - $100,000 (50% of amount being requested)"
+    },
+    {
+      "kind": "simple",
+      "label": "Comparable borrowing required for requests over $100,000",
+      "category": "credit",
+      "severity": "hard",
+      "field": "comparable_credit_pct",
+      "operator": "gte",
+      "value": {
+        "number": 75.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "loan_amount",
+          "operator": "gt",
+          "value": {
+            "number": 100000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "request is over $100,000"
+        }
+      ],
+      "source_quote": "Comparable business borrowing required for requests over $100,000 (75% of amount being requested)"
+    }
+  ],
+  "programs": [
+    {
+      "name": "A+ Pricing Guidelines with Personal Guarantee",
+      "rank": 1,
+      "description": "Best published A+ pricing tier for eligible industries/equipment types, with personal guarantee.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "A+ loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              500000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A+ Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $500,000"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A+ Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "5 years time in business"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 670.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "670+ PayNet, 720+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 720.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "670+ PayNet, 720+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ minimum revolving availability",
+          "category": "credit",
+          "severity": "hard",
+          "field": "revolving_available_pct",
+          "operator": "gte",
+          "value": {
+            "number": 50.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "670+ PayNet, 720+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ app-only ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 200000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A+ Rate Guidelines - App-only up to $200,000"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ maximum collateral age",
+          "category": "equipment",
+          "severity": "hard",
+          "field": "equipment_age_years",
+          "operator": "lte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Max Age of Collateral = 5 years"
+        },
+        {
+          "kind": "simple",
+          "label": "A+ no private party sales",
+          "category": "loan",
+          "severity": "hard",
+          "field": "transaction_type",
+          "operator": "neq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "private_party"
+            ],
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "No Private Party Sales"
+        },
+        {
+          "kind": "any_of",
+          "label": "A+ eligible industry or equipment type",
+          "category": "industry",
+          "severity": "hard",
+          "field": null,
+          "operator": null,
+          "value": null,
+          "alternatives": [
+            {
+              "field": "industry",
+              "operator": "in",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": null,
+                "options": [
+                  "landscaping",
+                  "automotive_repair",
+                  "construction",
+                  "commercial_cleaning",
+                  "medical",
+                  "dental",
+                  "veterinary",
+                  "waste_management"
+                ],
+                "range": null
+              },
+              "label": "eligible A+ industry"
+            },
+            {
+              "field": "equipment_category",
+              "operator": "in",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": null,
+                "options": [
+                  "forklift",
+                  "industrial_machinery",
+                  "machine_tools",
+                  "vocational_truck"
+                ],
+                "range": null
+              },
+              "label": "eligible A+ equipment"
+            }
+          ],
+          "applies_when": [],
+          "source_quote": "Eligible Industries/Equipment Types: Arbor/Landscaping; Automotive Repair; Construction/Trade Contractors; Commercial/Industrial Cleaning; Forklifts; Industrial Machinery; Machine Tools; Medical/Dental/Veterinarian (5+ years established practice); Vocational Trucks; Waste Management (no bins/containers)"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 6.75%; $50,000-$500,000 at 6.50%."
+        },
+        {
+          "key": "Documents over app-only ceiling",
+          "value": "2 years of Tax Returns or Accountant Prepared Financials and 3 Months of Bank Statements required over $200,000."
+        },
+        {
+          "key": "Program requirements",
+          "value": "See Standard Guidelines on Page 1."
+        },
+        {
+          "key": "Max commission",
+          "value": "8 points on deals $10,000-$49,999; 6 points on deals $50,000-$500,000."
+        }
+      ]
+    },
+    {
+      "name": "Corp Only Guidelines",
+      "rank": 2,
+      "description": "Corporate-only program with 7.00% buy rate.",
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "corporate-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Corp-only minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Must be in business a minimum of 5 years"
+        },
+        {
+          "kind": "simple",
+          "label": "Corp-only minimum annual sales",
+          "category": "business",
+          "severity": "hard",
+          "field": "annual_revenue",
+          "operator": "gte",
+          "value": {
+            "number": 3000000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Annual sales must be at least $3MM"
+        },
+        {
+          "kind": "simple",
+          "label": "Corp-only comparable business credit",
+          "category": "credit",
+          "severity": "hard",
+          "field": "comparable_credit_pct",
+          "operator": "gte",
+          "value": {
+            "number": 75.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Comparable business credit (75% of amount being requested) reporting on business credit reports as paid as agreed"
+        }
+      ],
+      "details": [
+        {
+          "key": "Buy rate",
+          "value": "7.00% buy rate."
+        },
+        {
+          "key": "Required documents",
+          "value": "Provide 2 years business tax returns or accountant prepared financials. Provide the last 3 months of full business bank statements."
+        },
+        {
+          "key": "Financial review",
+          "value": "Financial statements must show profitability, acceptable leverage, and adequate cash flow."
+        }
+      ]
+    },
+    {
+      "name": "Medical A Rate Guidelines with Personal Guarantee",
+      "rank": 3,
+      "description": "Medical pricing A tier with personal guarantee.",
+      "applies_when": [
+        {
+          "field": "is_medical",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "medical pricing program"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Medical A loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              500000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $500,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A minimum time licensed",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "years_licensed",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "5 years time licensed"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "700+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A minimum revolving availability",
+          "category": "credit",
+          "severity": "hard",
+          "field": "revolving_available_pct",
+          "operator": "gte",
+          "value": {
+            "number": 50.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "700+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A licensed professional requirement",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "is_licensed_medical_professional",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "The practice must be owned by a licensed MD, DO, DMD, DDS, OD, DPM, DVM, VMD or verifiable specialist."
+        },
+        {
+          "kind": "simple",
+          "label": "Medical A app-only ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 200000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rate Guidelines - App-only up to $200,000"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 7.25%; $50,000-$500,000 at 7.00%."
+        },
+        {
+          "key": "Documents over app-only ceiling",
+          "value": "2 years of Tax Returns or Accountant Prepared Financials and 3 Months of Bank Statements required over $200,000."
+        },
+        {
+          "key": "Program requirements",
+          "value": "See Standard Guidelines on Page 1. Healthcare licenses active and in good standing with no significant or recent disciplinary actions. Essential use equipment for the practice."
+        }
+      ]
+    },
+    {
+      "name": "Standard A Rate Guidelines with Personal Guarantee",
+      "rank": 4,
+      "description": "Standard pricing A tier with personal guarantee.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Standard A loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              500000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $500,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "5 years time in business"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 660.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "660+ PayNet, 700+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "660+ PayNet, 700+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A minimum revolving availability",
+          "category": "credit",
+          "severity": "hard",
+          "field": "revolving_available_pct",
+          "operator": "gte",
+          "value": {
+            "number": 50.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "660+ PayNet, 700+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard A app-only ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 200000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "A Rate Guidelines - App-only up to $200,000"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 7.75%; $50,000-$500,000 at 7.25%."
+        },
+        {
+          "key": "Documents over app-only ceiling",
+          "value": "2 years of Tax Returns or Accountant Prepared Financials and 3 Months of Bank Statements required over $200,000."
+        },
+        {
+          "key": "Deferred payment option",
+          "value": "90 days deferred available for A Credit customers."
+        },
+        {
+          "key": "Standard documents",
+          "value": "Signed credit application dated within 30 days; copy of equipment quote/invoice preferred."
+        },
+        {
+          "key": "Max commission",
+          "value": "15 points on deals $10,000-$99,999; 10 points on deals $100,000-$199,999; 6 points on deals $200,000+. Points exceeding these amounts split between Apex and broker."
+        }
+      ]
+    },
+    {
+      "name": "Medical B Rate Guidelines with Personal Guarantee",
+      "rank": 5,
+      "description": "Medical pricing B tier with personal guarantee.",
+      "applies_when": [
+        {
+          "field": "is_medical",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "medical pricing program"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Medical B loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              250000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $250,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B minimum time licensed",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "years_licensed",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "2 years time licensed"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 670.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "670+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B minimum revolving availability",
+          "category": "credit",
+          "severity": "hard",
+          "field": "revolving_available_pct",
+          "operator": "gte",
+          "value": {
+            "number": 50.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "670+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B licensed professional requirement",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "is_licensed_medical_professional",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "The practice must be owned by a licensed MD, DO, DMD, DDS, OD, DPM, DVM, VMD or verifiable specialist."
+        },
+        {
+          "kind": "simple",
+          "label": "Medical B app-only ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 100000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rate Guidelines - App-only up to $100,000"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 8.00%; $50,000-$250,000 at 7.50%."
+        },
+        {
+          "key": "Documents over app-only ceiling",
+          "value": "2 years of Tax Returns or Accountant Prepared Financials and 3 Months of Bank Statements required over $100,000."
+        },
+        {
+          "key": "Program requirements",
+          "value": "See Standard Guidelines on Page 1. Healthcare licenses active and in good standing with no significant or recent disciplinary actions. Essential use equipment for the practice."
+        }
+      ]
+    },
+    {
+      "name": "Standard B Rate Guidelines with Personal Guarantee",
+      "rank": 6,
+      "description": "Standard pricing B tier with personal guarantee.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Standard B loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              250000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $250,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "3 years time in business"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 650.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "650+ PayNet, 670+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 670.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "650+ PayNet, 670+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B minimum revolving availability",
+          "category": "credit",
+          "severity": "hard",
+          "field": "revolving_available_pct",
+          "operator": "gte",
+          "value": {
+            "number": 50.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "650+ PayNet, 670+ FICO, 50% revolving available"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard B app-only ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 100000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "B Rate Guidelines - App-only up to $100,000"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 8.75%; $50,000-$250,000 at 8.25%."
+        },
+        {
+          "key": "Documents over app-only ceiling",
+          "value": "2 years of Tax Returns or Accountant Prepared Financials and 3 Months of Bank Statements required over $100,000."
+        },
+        {
+          "key": "Standard documents",
+          "value": "Signed credit application dated within 30 days; copy of equipment quote/invoice preferred."
+        },
+        {
+          "key": "Max commission",
+          "value": "15 points on deals $10,000-$99,999; 10 points on deals $100,000-$199,999; 6 points on deals $200,000+. Points exceeding these amounts split between Apex and broker."
+        }
+      ]
+    },
+    {
+      "name": "Standard C Rate Guidelines with Personal Guarantee",
+      "rank": 7,
+      "description": "Standard pricing C tier with personal guarantee.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Standard C loan amount range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10000.0,
+              100000.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "C Rates 24-60 months ... $10,000 - $49,999 ... $50,000 - $100,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard C term range",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              24.0,
+              60.0
+            ]
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "C Rates 24-60 months"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard C minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "2 years time in business"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard C minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 640.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "640+ PayNet, 640+ FICO"
+        },
+        {
+          "kind": "simple",
+          "label": "Standard C minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 640.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "640+ PayNet, 640+ FICO"
+        }
+      ],
+      "details": [
+        {
+          "key": "Rates",
+          "value": "24-60 months: $10,000-$49,999 at 12.00%; $50,000-$100,000 at 11.00%."
+        },
+        {
+          "key": "Required documents",
+          "value": "3 months bank statements required with submission."
+        },
+        {
+          "key": "Standard documents",
+          "value": "Signed credit application dated within 30 days; copy of equipment quote/invoice preferred."
+        },
+        {
+          "key": "Max commission",
+          "value": "15 points on deals $10,000-$99,999; 10 points on deals $100,000-$199,999; 6 points on deals $200,000+. Points exceeding these amounts split between Apex and broker."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "Multiple contacts and submission emails",
+      "reason": "The document lists Stephanie Costa, Donald Wampler, and separate submission inboxes for credit, documents, and funding, but the schema has only one contact_name/email/phone.",
+      "suggestion": "Use Stephanie Costa as primary contact and store credit@apexcommercial.com, docs@apexcommercial.com, funding@apexcommercial.com in lender notes if supported."
+    },
+    {
+      "item": "Excluded 'Fad Medical'",
+      "reason": "No catalog field or enum distinguishes fad medical equipment from ordinary medical equipment or medical-practice essential-use equipment.",
+      "suggestion": "Add a fad_medical equipment subtype or manual review flag."
+    },
+    {
+      "item": "Medical license good standing and disciplinary actions",
+      "reason": "The document requires active healthcare licenses in good standing with no significant or recent disciplinary actions, but available fields only capture whether the guarantor is a licensed medical professional and years licensed.",
+      "suggestion": "Add fields for license_active, license_good_standing, and recent_disciplinary_actions."
+    },
+    {
+      "item": "Medical essential-use requirement",
+      "reason": "The document requires essential-use equipment for the practice, but the catalog does not include an essential-use field.",
+      "suggestion": "Add equipment_essential_use boolean or require manual review for medical programs."
+    },
+    {
+      "item": "Corp-only profitability, leverage, and cash-flow review",
+      "reason": "The corp-only program requires financial statements showing profitability, acceptable leverage, and adequate cash flow, but no catalog fields define profitability, leverage, cash flow, or thresholds.",
+      "suggestion": "Add financial-ratio fields and lender-specific thresholds, or route corp-only submissions to manual review."
+    },
+    {
+      "item": "Comparable business credit 'paid as agreed'",
+      "reason": "The corp-only guideline says comparable business credit must report as paid as agreed; the catalog has comparable_credit_pct but no field for paid-as-agreed status on business credit reports.",
+      "suggestion": "Add comparable_credit_paid_as_agreed boolean."
+    },
+    {
+      "item": "A+ Waste Management exclusion for bins/containers",
+      "reason": "A+ eligible list says Waste Management is eligible with 'no bins/containers', but the equipment catalog has no bins/containers subtype.",
+      "suggestion": "Add equipment subtype for waste bins/containers or a manual exclusion flag."
+    },
+    {
+      "item": "A+ eligible industries/equipment wording",
+      "reason": "The A+ section says to call to discuss other industries/equipment, so the published list was modeled as a hard eligibility rule for the published A+ pricing even though exceptions may be considered manually.",
+      "suggestion": "Allow exception workflow for non-listed A+ industries/equipment."
+    },
+    {
+      "item": "Nail salons mapped to beauty_salon",
+      "reason": "The catalog has beauty_salon but not nail_salon; mapping nail salons to beauty_salon may exclude broader beauty salon businesses than the document literally states.",
+      "suggestion": "Add nail_salon as a distinct industry option."
+    },
+    {
+      "item": "Trucking exclusion scope",
+      "reason": "The document excludes 'Trucking (Local & Long Haul)' but A+ eligible types include 'Vocational Trucks'. This was modeled as an excluded trucking industry, not a blanket truck-equipment exclusion.",
+      "suggestion": "Confirm whether truck equipment for non-trucking industries is acceptable and whether local/long-haul trucking should be a separate industry subtype."
+    },
+    {
+      "item": "Rate-table loan amount and term ranges",
+      "reason": "Loan amount and term ranges appear in pricing tables rather than explicit underwriting maximums. They were modeled as hard program limits because no other program amount/term limits are stated.",
+      "suggestion": "Confirm whether amounts or terms outside the rate tables are declines, custom pricing, or manual-review exceptions."
+    },
+    {
+      "item": "Private party sales and sale-leasebacks",
+      "reason": "The excluded list includes Private Party Sales and Sale-Leasebacks globally, while the A+ program separately states 'No Private Party Sales'. These were modeled as global exclusions with a repeated A+ private-party rule.",
+      "suggestion": "Confirm whether any program exceptions exist for private party or sale-leaseback transactions."
+    },
+    {
+      "item": "Weaker collateral pricing increase",
+      "reason": "The document notes '+.50% to 1.00% for weaker collateral', but the catalog has no weak-collateral field and rates are display-only.",
+      "suggestion": "Add collateral_quality or weak_collateral flag if pricing adjustments need to be automated."
+    }
+  ]
+}

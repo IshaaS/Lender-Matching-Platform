@@ -1,0 +1,1939 @@
+{
+  "lender_name": "Citizens Bank",
+  "contact_name": "Joey Walter",
+  "contact_email": "joey.walter@thecitizensbank.net",
+  "contact_phone": "501-451-5113",
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "California applicants excluded",
+      "category": "geography",
+      "severity": "hard",
+      "field": "business_state",
+      "operator": "neq",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "CA"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Citizens Bank will no longer provide financing for applicants/ dealers in the State of California."
+    },
+    {
+      "kind": "simple",
+      "label": "US citizenship required",
+      "category": "guarantor",
+      "severity": "hard",
+      "field": "is_us_citizen",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": true,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Customers must be US Citizen."
+    },
+    {
+      "kind": "simple",
+      "label": "Sale-leaseback transactions not offered",
+      "category": "loan",
+      "severity": "hard",
+      "field": "transaction_type",
+      "operator": "neq",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "sale_leaseback"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Sale leaseback or cash out transactions are not offered."
+    },
+    {
+      "kind": "simple",
+      "label": "Refinance transactions not considered",
+      "category": "loan",
+      "severity": "hard",
+      "field": "transaction_type",
+      "operator": "neq",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "refinance"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Refinance transactions are not considered."
+    },
+    {
+      "kind": "simple",
+      "label": "Private-party equipment must be titled",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_is_titled",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": true,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "transaction_type",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "private_party"
+            ],
+            "range": null
+          },
+          "label": "Private Party transaction"
+        }
+      ],
+      "source_quote": "Private Party transaction will be considered only with title upfront before closing... Private Party Transactions on non-titled equipment is not offered."
+    },
+    {
+      "kind": "simple",
+      "label": "Bankruptcy must be discharged over 5 years",
+      "category": "history",
+      "severity": "hard",
+      "field": "years_since_bankruptcy_discharge",
+      "operator": "gt",
+      "value": {
+        "number": 5.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "has_bankruptcy",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Applicant has previous bankruptcy"
+        }
+      ],
+      "source_quote": "Applicants with previous bankruptcy must be over 5 years' discharged."
+    },
+    {
+      "kind": "simple",
+      "label": "Cannabis businesses not desired",
+      "category": "industry",
+      "severity": "soft",
+      "field": "industry",
+      "operator": "neq",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "cannabis"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Cannabis related equipment/businesses are not desired."
+    },
+    {
+      "kind": "simple",
+      "label": "Non-CDL owners buying CDL-required truck equipment must operate at least 10 units",
+      "category": "business",
+      "severity": "hard",
+      "field": "trucks_operated",
+      "operator": "gte",
+      "value": {
+        "number": 10.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "has_cdl",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Non-CDL owner"
+        },
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck",
+              "dump_truck",
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "CDL-required truck equipment approximation"
+        }
+      ],
+      "source_quote": "Non-CDL Owners buying CDL required equipment must have a minimum of 10 units."
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 truck mileage over 600,000 not desired",
+      "category": "equipment",
+      "severity": "soft",
+      "field": "equipment_mileage",
+      "operator": "lte",
+      "value": {
+        "number": 600000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck"
+            ],
+            "range": null
+          },
+          "label": "Class 8 truck, excluding dump"
+        }
+      ],
+      "source_quote": "Class 8 Truck Terms (excludes dump)... 601,001 - Above Not Desired"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 truck up to 200,000 miles term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck"
+            ],
+            "range": null
+          },
+          "label": "Class 8 truck, excluding dump"
+        },
+        {
+          "field": "equipment_mileage",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              0.0,
+              200000.0
+            ]
+          },
+          "label": "0 - 200,000 miles"
+        }
+      ],
+      "source_quote": "0 - 200,000 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 truck 200,001 to 400,000 miles term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 48.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck"
+            ],
+            "range": null
+          },
+          "label": "Class 8 truck, excluding dump"
+        },
+        {
+          "field": "equipment_mileage",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              200001.0,
+              400000.0
+            ]
+          },
+          "label": "200,001 - 400,000 miles"
+        }
+      ],
+      "source_quote": "200,001- 400,000 48-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 truck 400,001 to 600,000 miles term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 36.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "class_8_truck"
+            ],
+            "range": null
+          },
+          "label": "Class 8 truck, excluding dump"
+        },
+        {
+          "field": "equipment_mileage",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              400001.0,
+              600000.0
+            ]
+          },
+          "label": "400,001 - 600,000 miles"
+        }
+      ],
+      "source_quote": "400,001- 600,000 36-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 trailer model year 2020-new term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trailer",
+              "reefer_trailer"
+            ],
+            "range": null
+          },
+          "label": "Class 8 trailer"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "lte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "2020-New model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "Class 8 Trailers... 2020-New 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 trailer model year 2016-2019 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 48.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trailer",
+              "reefer_trailer"
+            ],
+            "range": null
+          },
+          "label": "Class 8 trailer"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              6.0,
+              9.0
+            ]
+          },
+          "label": "2016-2019 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2016-2019 48-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 trailer model year 2014-2015 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 36.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trailer",
+              "reefer_trailer"
+            ],
+            "range": null
+          },
+          "label": "Class 8 trailer"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              10.0,
+              11.0
+            ]
+          },
+          "label": "2014-2015 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2014-2015 36-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Class 8 trailer model year 2011-2013 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 24.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "trailer",
+              "reefer_trailer"
+            ],
+            "range": null
+          },
+          "label": "Class 8 trailer"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              12.0,
+              14.0
+            ]
+          },
+          "label": "2011-2013 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2011-2013 24-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Dump truck mileage over 500,000 not desired",
+      "category": "equipment",
+      "severity": "soft",
+      "field": "equipment_mileage",
+      "operator": "lte",
+      "value": {
+        "number": 500000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "dump_truck"
+            ],
+            "range": null
+          },
+          "label": "Dump truck"
+        }
+      ],
+      "source_quote": "Dump Truck Terms... Mileage over 500,000 not desired"
+    },
+    {
+      "kind": "simple",
+      "label": "Dump truck model year 2021-new term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "dump_truck"
+            ],
+            "range": null
+          },
+          "label": "Dump truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "lte",
+          "value": {
+            "number": 4.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "2021-New model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "Dump Truck Terms... 2021-New 60-months 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Dump truck model year 2019-2020 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 48.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "dump_truck"
+            ],
+            "range": null
+          },
+          "label": "Dump truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              5.0,
+              6.0
+            ]
+          },
+          "label": "2019-2020 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2019-2020 48-months 48-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Dump truck tandem model year 2015-2018 term cap approximation",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 36.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "dump_truck"
+            ],
+            "range": null
+          },
+          "label": "Dump truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              7.0,
+              10.0
+            ]
+          },
+          "label": "2015-2018 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2015-2018 NA 36-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Medium duty truck mileage over 350,000 not desired",
+      "category": "equipment",
+      "severity": "soft",
+      "field": "equipment_mileage",
+      "operator": "lte",
+      "value": {
+        "number": 350000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        }
+      ],
+      "source_quote": "Mileage over 350,000 not desired"
+    },
+    {
+      "kind": "simple",
+      "label": "Medium duty truck 250,000 to 349,999 miles term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 24.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        },
+        {
+          "field": "equipment_mileage",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              250000.0,
+              349999.0
+            ]
+          },
+          "label": "Mileage 250,000-349,999"
+        }
+      ],
+      "source_quote": "Mileage 250,000-349,999 24-months regardless of age."
+    },
+    {
+      "kind": "simple",
+      "label": "New medium duty truck term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        },
+        {
+          "field": "equipment_condition",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "new"
+            ],
+            "range": null
+          },
+          "label": "New"
+        }
+      ],
+      "source_quote": "Medium Duty Trucks... New 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Medium duty truck model year 2022-2024 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 48.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              1.0,
+              3.0
+            ]
+          },
+          "label": "2022-2024 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2022-2024 48-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Medium duty truck model year 2019-2021 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 36.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              4.0,
+              6.0
+            ]
+          },
+          "label": "2019-2021 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2019-2021 36-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Medium duty truck model year 2016-2018 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 24.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medium_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Medium duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              7.0,
+              9.0
+            ]
+          },
+          "label": "2016-2018 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2016-2018 24-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Light duty truck mileage over 175,001 not desired",
+      "category": "equipment",
+      "severity": "soft",
+      "field": "equipment_mileage",
+      "operator": "lte",
+      "value": {
+        "number": 175001.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        }
+      ],
+      "source_quote": "Mileage over 175,001 not desired"
+    },
+    {
+      "kind": "simple",
+      "label": "Light duty truck 125,000 to 175,000 miles term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 24.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        },
+        {
+          "field": "equipment_mileage",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              125000.0,
+              175000.0
+            ]
+          },
+          "label": "Mileage 125,000-175,000"
+        }
+      ],
+      "source_quote": "Mileage 125,000-175,000 24-months regardless of age."
+    },
+    {
+      "kind": "simple",
+      "label": "New light duty truck term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        },
+        {
+          "field": "equipment_condition",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "new"
+            ],
+            "range": null
+          },
+          "label": "New"
+        }
+      ],
+      "source_quote": "Light Duty Trucks... New 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Light duty truck model year 2022-2024 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 48.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              1.0,
+              3.0
+            ]
+          },
+          "label": "2022-2024 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2022-2024 48-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Light duty truck model year 2020-2021 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 36.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              4.0,
+              5.0
+            ]
+          },
+          "label": "2020-2021 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2020-2021 36-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Light duty truck model year 2006-2014 term cap",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 24.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "light_duty_truck"
+            ],
+            "range": null
+          },
+          "label": "Light duty truck"
+        },
+        {
+          "field": "equipment_age_years",
+          "operator": "between",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": [
+              11.0,
+              19.0
+            ]
+          },
+          "label": "2006-2014 model year converted from 2025 guideline"
+        }
+      ],
+      "source_quote": "2006-2014 24-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Construction equipment maximum term",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "lte",
+      "value": {
+        "number": 60.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "construction"
+            ],
+            "range": null
+          },
+          "label": "Construction equipment"
+        }
+      ],
+      "source_quote": "Construction Equipment... 2022-New 60-months 60-months 60-months"
+    },
+    {
+      "kind": "simple",
+      "label": "Other listed equipment term range",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "term_months",
+      "operator": "between",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": [
+          24.0,
+          60.0
+        ]
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "in",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "automotive_repair",
+              "janitorial",
+              "office_copier",
+              "machine_tools",
+              "material_handling",
+              "restaurant",
+              "landscaping",
+              "farm",
+              "audio_visual",
+              "medical"
+            ],
+            "range": null
+          },
+          "label": "Other listed equipment"
+        }
+      ],
+      "source_quote": "OTHER EQUIPMENT... Terms based on age, type of equipment and overall condition 24-60 months"
+    },
+    {
+      "kind": "simple",
+      "label": "Medical equipment borrower must be licensed medical professional",
+      "category": "guarantor",
+      "severity": "hard",
+      "field": "is_licensed_medical_professional",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": true,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "equipment_category",
+          "operator": "eq",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": [
+              "medical"
+            ],
+            "range": null
+          },
+          "label": "Medical equipment"
+        }
+      ],
+      "source_quote": "Medical Equipment (must be medical doctor)"
+    }
+  ],
+  "programs": [
+    {
+      "name": "Tier 1 - General Program Application Only",
+      "rank": 1,
+      "description": "Application-only Tier 1 general program up to $75,000 all-in total relationship.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Tier 1 application-only total relationship ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 75000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 1: $75,000 ALL IN (Total Relationship) General Program"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 1 minimum TransUnion credit score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "2 years time in business: 700+ Transunion Credit Score"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 1 minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "2 years time in business: 700+ Transunion Credit Score"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 1 homeownership required",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "is_homeowner",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Homeownership required"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 1 CDL required when trucking",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "has_cdl",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [
+            {
+              "field": "is_trucking",
+              "operator": "is_true",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": true,
+                "options": null,
+                "range": null
+              },
+              "label": "Trucking / CDL-needed equipment approximation"
+            }
+          ],
+          "source_quote": "CDL Required (if needed)"
+        }
+      ],
+      "details": [
+        {
+          "key": "points",
+          "value": "10 points max; 1 split to Citizens."
+        },
+        {
+          "key": "required_documents",
+          "value": "Application-only; 3 months bank statements."
+        },
+        {
+          "key": "guaranty",
+          "value": "Owners with at least 10% ownership must personally guaranty."
+        }
+      ]
+    },
+    {
+      "name": "Tier 2 - Start Up Program Application Only",
+      "rank": 2,
+      "description": "Application-only startup program up to $50,000 all-in total relationship.",
+      "applies_when": [
+        {
+          "field": "is_startup",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Start up Program"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Tier 2 startup application-only total relationship ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 50000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 2: $50,000 ALL IN (Total Relationship) Start up Program"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 startup minimum TransUnion credit score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Credit score 700+ Transunion"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 startup homeownership required",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "is_homeowner",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Homeownership required"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 startup trucking CDL experience",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "cdl_years",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [
+            {
+              "field": "is_trucking",
+              "operator": "is_true",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": true,
+                "options": null,
+                "range": null
+              },
+              "label": "If trucking"
+            }
+          ],
+          "source_quote": "Class A CDL for 5 years if trucking"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 startup non-trucking industry experience",
+          "category": "business",
+          "severity": "hard",
+          "field": "industry_experience_years",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [
+            {
+              "field": "is_trucking",
+              "operator": "is_false",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": false,
+                "options": null,
+                "range": null
+              },
+              "label": "If other industry"
+            }
+          ],
+          "source_quote": "5 years verifiable industry experience if other industry"
+        }
+      ],
+      "details": [
+        {
+          "key": "points",
+          "value": "7 points max; 1 split to Citizens."
+        },
+        {
+          "key": "required_documents",
+          "value": "Application-only; 3 months bank statements."
+        },
+        {
+          "key": "gps",
+          "value": "GPS Required."
+        }
+      ]
+    },
+    {
+      "name": "Tier 2 - Non Homeowner Program Application Only",
+      "rank": 3,
+      "description": "Application-only non-homeowner program up to $50,000 all-in total relationship.",
+      "applies_when": [
+        {
+          "field": "is_homeowner",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Non Homeowner Program"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Tier 2 non-homeowner application-only total relationship ceiling",
+          "category": "loan",
+          "severity": "soft",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 50000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 2: $50,000 ALL IN (Total Relationship) Non Homeowner Program"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 non-homeowner minimum TransUnion credit score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "700+ Transunion Credit Score"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 non-homeowner years at current residence",
+          "category": "guarantor",
+          "severity": "hard",
+          "field": "years_at_residence",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "5 years at current residence"
+        },
+        {
+          "kind": "simple",
+          "label": "Tier 2 non-homeowner minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "2 years TIB is required"
+        }
+      ],
+      "details": [
+        {
+          "key": "points",
+          "value": "7 points max; 1 split to Citizens."
+        },
+        {
+          "key": "required_documents",
+          "value": "Application-only; 3 months bank statements."
+        },
+        {
+          "key": "gps",
+          "value": "GPS Required."
+        }
+      ]
+    },
+    {
+      "name": "Tier 3 - Full Financials Program",
+      "rank": 4,
+      "description": "Full-financials program for transactions $75,000 to $1,000,000 or transactions that do not fit application-only tiers.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Tier 3 maximum transaction size",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 1000000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 3: Transactions $75,000 - $1,000,000 or those that don\u2019t fit in the above tiers will be considered with full financials"
+        }
+      ],
+      "details": [
+        {
+          "key": "documentation_requirement",
+          "value": "Full financials required."
+        },
+        {
+          "key": "required_documents",
+          "value": "Last 2 years business tax returns or audited financials; last 2 years personal tax returns on each guarantor; current personal financial statement on each guarantor; current debt schedule on the business; article of incorporation or corporate resolution; last 3 months bank statements."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "Year-model term tables converted to equipment_age_years",
+      "reason": "The catalog has equipment_age_years but no model-year field. I converted model-year bands using the 2025 guideline year, e.g. 2020-New as age <= 5 and 2016-2019 as age 6-9.",
+      "suggestion": "Confirm whether the underwriting engine should calculate age from model year dynamically rather than storing fixed 2025 conversions."
+    },
+    {
+      "item": "Dump truck single-axle versus tandem-plus terms",
+      "reason": "The table gives different treatment for 2015-2018 dump trucks: Single Axle is NA and Tandem+ is 36 months, but there is no catalog field for axle configuration.",
+      "suggestion": "Add an axle_configuration or dump_truck_type field if this distinction must be automated."
+    },
+    {
+      "item": "Construction equipment heavy/medium/light term table",
+      "reason": "The construction table varies term by heavy, medium, and light classes, but the catalog only has equipment_category=construction and no construction-weight class field. I captured only the overall 60-month maximum.",
+      "suggestion": "Add construction_equipment_class with heavy/medium/light options to encode the full table."
+    },
+    {
+      "item": "Restaurant equipment approved franchise only",
+      "reason": "The guideline says Restaurant Equipment is eligible only for approved franchises, but the catalog has no franchise/approved-franchise field.",
+      "suggestion": "Add is_approved_franchise or handle as manual review for restaurant equipment."
+    },
+    {
+      "item": "Medical equipment must be medical doctor",
+      "reason": "The catalog field is is_licensed_medical_professional, which is broader than medical doctor. I mapped the requirement to that field as the closest available option.",
+      "suggestion": "Add is_medical_doctor if the narrower distinction is required."
+    },
+    {
+      "item": "Cash-out transactions not offered",
+      "reason": "The document excludes cash-out transactions, but transaction_type has no cash_out option. Refinance and sale_leaseback exclusions were encoded separately.",
+      "suggestion": "Add cash_out as a transaction_type option or a separate is_cash_out field."
+    },
+    {
+      "item": "Straw purchase / investor deals not allowed",
+      "reason": "No catalog field represents straw purchase or investor-purpose transactions.",
+      "suggestion": "Add is_straw_purchase and/or is_investor_deal fields for automated enforcement."
+    },
+    {
+      "item": "Dealer state restriction",
+      "reason": "The California rule applies to applicants and dealers, but the catalog only has business_state for the applicant/business and no dealer_state field.",
+      "suggestion": "Add dealer_state if dealer geography should be checked automatically."
+    },
+    {
+      "item": "Private-party and consignment process requirements",
+      "reason": "The document requires title upfront, DOT inspection, third-party inspection, original contracts for private-party/consignment transactions, and treats consignment as private party. The catalog can only encode titled equipment and transaction_type private_party; it has no consignment, DOT, inspection, or original-contract fields.",
+      "suggestion": "Add fields for consignment, title_received_before_closing, dot_inspection_required/completed, third_party_inspection_completed, and originals_received if needed."
+    },
+    {
+      "item": "Non-CDL owners buying CDL-required equipment must have 10 units",
+      "reason": "There is no explicit field for CDL-required equipment or owner CDL status by owner. I approximated using has_cdl=false and truck equipment categories likely to require CDL.",
+      "suggestion": "Add equipment_requires_cdl and owner_has_cdl fields for precise automation."
+    },
+    {
+      "item": "Personal guaranty by owners with 10% or more ownership",
+      "reason": "The guideline requires all owners with at least 10% ownership to guaranty, but the catalog has no fields for ownership percentage or guaranty status.",
+      "suggestion": "Add required_guarantors_completed or owner_ownership_pct/owner_guaranty fields."
+    },
+    {
+      "item": "Insurance and deductible requirement",
+      "reason": "All financed equipment must be insured for at least the amount financed with Citizens Bank as loss payee and max $2,500 deductible, but there are no insurance fields in the catalog.",
+      "suggestion": "Add insurance_coverage_amount, loss_payee_confirmed, and insurance_deductible fields."
+    },
+    {
+      "item": "GPS requirement in Tier 2 programs",
+      "reason": "GPS Required is a program condition, but there is no catalog field for GPS installed/required. It was placed in program details only.",
+      "suggestion": "Add gps_installed or gps_required_acknowledged if this should be automated."
+    },
+    {
+      "item": "Class A CDL for startup trucking",
+      "reason": "The guideline specifies Class A CDL for 5 years, but the catalog only has cdl_years and has_cdl without CDL class.",
+      "suggestion": "Add cdl_class field if Class A must be distinguished."
+    },
+    {
+      "item": "TransUnion score mapped to fico_score",
+      "reason": "The document references TransUnion Credit Score; the catalog has fico_score described as the lowest score across guarantors. I used fico_score >= 700.",
+      "suggestion": "Confirm whether TransUnion score should be mapped to the generic fico_score field."
+    },
+    {
+      "item": "Cannabis related equipment/businesses are not desired",
+      "reason": "The document says 'not desired' rather than an absolute exclusion. I modeled it as a soft industry rule and could not separately encode cannabis-related equipment because no equipment option exists.",
+      "suggestion": "Confirm whether cannabis should be a hard decline and add cannabis_equipment indicator if needed."
+    },
+    {
+      "item": "Reefer high/low hours adjustment",
+      "reason": "The trailer table says terms may adjust due to high/low hours on a reefer unit, but the catalog has no equipment-hours field.",
+      "suggestion": "Add equipment_hours for reefer and heavy equipment term adjustments."
+    },
+    {
+      "item": "Engine overhaul notes",
+      "reason": "The document states engine overhauls do not help with term guidelines, but there is no catalog field for engine overhaul and no rule adjustment to encode.",
+      "suggestion": "If relevant, add engine_overhauled field but keep term logic based on original age/mileage."
+    },
+    {
+      "item": "Cross-corp transactions considered depending on credit performance",
+      "reason": "No catalog field represents cross-corporate transactions or related credit performance.",
+      "suggestion": "Add is_cross_corp_transaction if routing/manual review is required."
+    },
+    {
+      "item": "Approved broker/vendor requirements",
+      "reason": "The FAQ requires documentation and approval for brokers/vendors not already approved, but the catalog has no broker/vendor approval fields.",
+      "suggestion": "Add vendor_approved and broker_approved fields if broker/vendor eligibility should be automated."
+    }
+  ]
+}

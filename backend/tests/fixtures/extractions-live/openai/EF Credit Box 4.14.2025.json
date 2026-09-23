@@ -1,0 +1,962 @@
+{
+  "lender_name": "Stearns Bank Equipment Finance",
+  "contact_name": null,
+  "contact_email": null,
+  "contact_phone": null,
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "No bankruptcy in last 7 years",
+      "category": "history",
+      "severity": "hard",
+      "field": "years_since_bankruptcy_discharge",
+      "operator": "gte",
+      "value": {
+        "number": 7.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "has_bankruptcy",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Only applies when applicant has a bankruptcy"
+        }
+      ],
+      "source_quote": "No BK in last 7 years"
+    },
+    {
+      "kind": "any_of",
+      "label": "Comparable debt requirement",
+      "category": "credit",
+      "severity": "hard",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "alternatives": [
+        {
+          "field": "comparable_credit_pct",
+          "operator": "gte",
+          "value": {
+            "number": 100.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "Any single open or recently closed comparable account equal to or greater than requested amount"
+        },
+        {
+          "field": "comparable_contracts_count",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "3 or more comparable contracts"
+        }
+      ],
+      "applies_when": [],
+      "source_quote": "Comp Debt \u2022 Any single open account equal to or greater than requested amount \u2022 Any single closed account within last 12 months equal to or greater than requested amount \u2022 3 or more contracts ($10K minimum) with payment activity in the last 12 months"
+    },
+    {
+      "kind": "simple",
+      "label": "Maximum personal revolving balance",
+      "category": "credit",
+      "severity": "hard",
+      "field": "revolving_balance",
+      "operator": "lte",
+      "value": {
+        "number": 30000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Personal revolving over $30K OR revolving + unsecured debt over $50K (excluding student loans)"
+    },
+    {
+      "kind": "simple",
+      "label": "Maximum revolving plus unsecured debt",
+      "category": "credit",
+      "severity": "hard",
+      "field": "revolving_plus_unsecured_debt",
+      "operator": "lte",
+      "value": {
+        "number": 50000.0,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Personal revolving over $30K OR revolving + unsecured debt over $50K (excluding student loans)"
+    },
+    {
+      "kind": "simple",
+      "label": "Restricted industries",
+      "category": "industry",
+      "severity": "hard",
+      "field": "industry",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "gaming_gambling",
+          "hazmat",
+          "oil_gas",
+          "money_services",
+          "adult_entertainment",
+          "weapons_firearms",
+          "beauty_salon",
+          "tattoo_piercing",
+          "real_estate",
+          "trucking",
+          "restaurant",
+          "car_wash"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Restrictions: Gaming/Gambling; Hazmat; Oil & Gas; MSBs; Adult Entertainment; Weapons/Firearms; Beauty/Tanning Salons; Tattoo/Piercing; Real Estate; OTR; Restaurants; Car Wash"
+    },
+    {
+      "kind": "simple",
+      "label": "Business must be U.S.-based",
+      "category": "geography",
+      "severity": "hard",
+      "field": "is_us_based",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": true,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Restrictions: Foreign Country"
+    },
+    {
+      "kind": "simple",
+      "label": "Business must have a physical location",
+      "category": "business",
+      "severity": "hard",
+      "field": "has_physical_location",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": true,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Restrictions: No Physical Location"
+    }
+  ],
+  "programs": [
+    {
+      "name": "Standard Credit Box - Tier 1",
+      "rank": 1,
+      "description": "Most favorable standard tier when PayNet is available and request is not corp-only.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Standard table requires PayNet score"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 725.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 1: FICO 725"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 1: TIB 3"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 685.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 1: Paynet 685"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "Primary Credit Box table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Standard Credit Box - Tier 2",
+      "rank": 2,
+      "description": "Standard tier when PayNet is available and request is not corp-only.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Standard table requires PayNet score"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 710.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 2: FICO 710"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 2: TIB 3"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 675.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 2: Paynet 675"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "Primary Credit Box table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Standard Credit Box - Tier 3",
+      "rank": 3,
+      "description": "Standard tier when PayNet is available and request is not corp-only.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "Standard table requires PayNet score"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 3: FICO 700"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 3: TIB 2"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 665.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Tier 3: Paynet 665"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "Primary Credit Box table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "No PayNet Credit Box - Tier 1",
+      "rank": 1,
+      "description": "Most favorable tier when no PayNet score is available.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "If no PayNet"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 735.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 1 FICO 735"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 1 TIB 5"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If no Paynet table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "No PayNet Credit Box - Tier 2",
+      "rank": 2,
+      "description": "Tier when no PayNet score is available.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "If no PayNet"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 720.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 2 FICO 720"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 2 TIB 3"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If no Paynet table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "No PayNet Credit Box - Tier 3",
+      "rank": 3,
+      "description": "Tier when no PayNet score is available.",
+      "applies_when": [
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "If no PayNet"
+        },
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": false,
+            "options": null,
+            "range": null
+          },
+          "label": "Not a corp-only request"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 710.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 3 FICO 710"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If no Paynet: Tier 3 TIB 2"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If no Paynet table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Corp Only Credit Box - Tier 1",
+      "rank": 1,
+      "description": "Most favorable tier for corp-only requests.",
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "If corp only"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 1 Paynet 700"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 10.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 1 TIB 10"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If Corp only table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Corp Only Credit Box - Tier 2",
+      "rank": 2,
+      "description": "Tier for corp-only requests.",
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "If corp only"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 690.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 2 Paynet 690"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 2 TIB 5"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If Corp only table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Corp Only Credit Box - Tier 3",
+      "rank": 3,
+      "description": "Tier for corp-only requests.",
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": true,
+            "options": null,
+            "range": null
+          },
+          "label": "If corp only"
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet score",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 680.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 3 Paynet 680"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "If Corp only: Tier 3 TIB 5"
+        }
+      ],
+      "details": [
+        {
+          "key": "Source table",
+          "value": "If Corp only table"
+        },
+        {
+          "key": "Document note",
+          "value": "These are only guidelines and are subject to lender discretion."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "Guideline severity",
+      "reason": "The document says the credit box contains guidelines and is subject to lender discretion, but the tables are presented as tier thresholds. I modeled the tier thresholds and stated restrictions as hard eligibility rules.",
+      "suggestion": "Confirm whether these should be hard rules for automated tiering or soft guidance only."
+    },
+    {
+      "item": "Standard vs. corp-only program selection",
+      "reason": "The document provides a separate 'If Corp only' table. I assumed the standard and no-PayNet tables are for non-corp-only requests to avoid overlap with the corp-only table.",
+      "suggestion": "Confirm whether corp-only requests should be evaluated only against the corp-only table."
+    },
+    {
+      "item": "Corp-only PayNet availability",
+      "reason": "The corp-only table includes PayNet thresholds but does not explicitly say 'has PayNet' is required. I modeled PayNet score thresholds but did not add a separate has_paynet condition.",
+      "suggestion": "Confirm whether corp-only applications with no PayNet score are ineligible or should use another table."
+    },
+    {
+      "item": "Comparable debt details",
+      "reason": "The catalog cannot distinguish open comparable accounts from closed accounts within the last 12 months, nor can it express that each of 3 contracts must be at least $10K and have payment activity in the last 12 months. I approximated with comparable_credit_pct >= 100 or comparable_contracts_count >= 3.",
+      "suggestion": "Add fields for open/closed comparable tradeline recency, minimum comparable contract size, and payment-activity recency if this must be enforced precisely."
+    },
+    {
+      "item": "Revolver utilization",
+      "reason": "The document lists 'Revolver Utilization' but does not provide a required threshold.",
+      "suggestion": "Obtain the utilization limit or decide whether this is a manual-review item."
+    },
+    {
+      "item": "Personal revolving / unsecured debt exclusion",
+      "reason": "The document excludes student loans from the $50K revolving plus unsecured debt calculation, but the catalog field does not specify whether student loans are excluded.",
+      "suggestion": "Confirm source data calculation or add a field that excludes student loans explicitly."
+    },
+    {
+      "item": "OTR restriction mapping",
+      "reason": "'OTR' usually means over-the-road trucking. The catalog has only the broader industry option 'trucking', so I mapped OTR to industry=trucking, which may be broader than intended.",
+      "suggestion": "Add an over-the-road trucking subcategory if local/vocational trucking is treated differently."
+    },
+    {
+      "item": "Beauty/Tanning Salons restriction mapping",
+      "reason": "The catalog has industry=beauty_salon but no tanning-salon industry option. I mapped the restriction only to beauty_salon and did not use equipment_category=tanning_bed because the restriction appears to be an industry/business restriction.",
+      "suggestion": "Add a tanning_salon industry option if needed."
+    },
+    {
+      "item": "Aesthetic restriction",
+      "reason": "The document lists 'Aesthetic' as a restriction, but the catalog does not have an aesthetic/med-spa/cosmetic-services industry option. Mapping it to medical would likely be too broad.",
+      "suggestion": "Add an aesthetic/med_spa industry option or define whether this should map to medical."
+    },
+    {
+      "item": "Non-Essential Use restriction",
+      "reason": "The document lists 'Non-Essential Use' as a restriction, but no catalog field captures essential vs. non-essential use.",
+      "suggestion": "Add an equipment/use-purpose field if this restriction must be evaluated automatically."
+    }
+  ]
+}

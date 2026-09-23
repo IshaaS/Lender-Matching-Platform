@@ -1,0 +1,381 @@
+{
+  "lender_name": "Advantage+ Financing",
+  "contact_name": null,
+  "contact_email": "SalesSupport@advantageplusfinancing.com",
+  "contact_phone": "(262) 439-7600",
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "Non-trucking applications only",
+      "category": "industry",
+      "severity": "hard",
+      "field": "is_trucking",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "BROKER Ideal Customer Profile for Non-Trucking Applications of up to $75,000"
+    },
+    {
+      "kind": "simple",
+      "label": "U.S. citizen only",
+      "category": "guarantor",
+      "severity": "hard",
+      "field": "is_us_citizen",
+      "operator": "is_true",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "US Citizen only"
+    },
+    {
+      "kind": "simple",
+      "label": "No bankruptcies",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_bankruptcy",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Do you finance bankruptcies? If so, how long after it has been discharged are customers eligible? No"
+    },
+    {
+      "kind": "simple",
+      "label": "No judgments",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_judgments",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Do you extend credit with judgements in the history? No"
+    },
+    {
+      "kind": "simple",
+      "label": "No foreclosures",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_foreclosures",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Do you extend credit with foreclosures in the history? No"
+    },
+    {
+      "kind": "simple",
+      "label": "No repossessions",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_repossessions",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Do you extend credit with repossessions in the history? No"
+    },
+    {
+      "kind": "simple",
+      "label": "No tax liens",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_tax_liens",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "No tax liens."
+    },
+    {
+      "kind": "simple",
+      "label": "No recent collections",
+      "category": "history",
+      "severity": "hard",
+      "field": "has_recent_collections",
+      "operator": "is_false",
+      "value": null,
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "No collections or charge-offs in the past 3 years."
+    }
+  ],
+  "programs": [
+    {
+      "name": "Broker Non-Trucking Applications up to $75,000",
+      "rank": 1,
+      "description": "Advantage+ Financing broker program for non-trucking applications, A to B- credit range, up to $75,000.",
+      "applies_when": [],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 680.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "What is your minimum FICO score? 680 FICO v5 (Equifax) \u2013 700+ for Start-Ups"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum FICO for start-ups",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [
+            {
+              "field": "is_startup",
+              "operator": "is_true",
+              "value": {
+                "number": null,
+                "text": null,
+                "boolean": null,
+                "options": null,
+                "range": null
+              },
+              "label": "Applies to start-ups"
+            }
+          ],
+          "source_quote": "What is your minimum FICO score? 680 FICO v5 (Equifax) \u2013 700+ for Start-Ups"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum industry experience",
+          "category": "business",
+          "severity": "hard",
+          "field": "industry_experience_years",
+          "operator": "gte",
+          "value": {
+            "number": 3.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Minimum industry experience (years)? 3 years"
+        },
+        {
+          "kind": "simple",
+          "label": "Maximum loan amount",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "lte",
+          "value": {
+            "number": 75000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "What is the maximum single application loan amount? \u2264$75,000"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum loan amount",
+          "category": "loan",
+          "severity": "hard",
+          "field": "loan_amount",
+          "operator": "gte",
+          "value": {
+            "number": 10000.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "$10,000 loan minimum"
+        },
+        {
+          "kind": "simple",
+          "label": "Maximum term",
+          "category": "loan",
+          "severity": "hard",
+          "field": "term_months",
+          "operator": "lte",
+          "value": {
+            "number": 60.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "What is the maximum loan term (in months)? 60"
+        },
+        {
+          "kind": "simple",
+          "label": "Typical minimum down payment",
+          "category": "loan",
+          "severity": "soft",
+          "field": "down_payment_pct",
+          "operator": "gte",
+          "value": {
+            "number": 10.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "What is your typical minimum down payment %? 10% down (additional 10% security deposit for Start-Ups)"
+        },
+        {
+          "kind": "simple",
+          "label": "Preferred trade history",
+          "category": "credit",
+          "severity": "soft",
+          "field": "trade_history_years",
+          "operator": "gte",
+          "value": {
+            "number": 7.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Prefer 7 years\u2019 trade history and 80% comparable credit."
+        },
+        {
+          "kind": "simple",
+          "label": "Preferred comparable credit",
+          "category": "credit",
+          "severity": "soft",
+          "field": "comparable_credit_pct",
+          "operator": "gte",
+          "value": {
+            "number": 80.0,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Prefer 7 years\u2019 trade history and 80% comparable credit."
+        }
+      ],
+      "details": [
+        {
+          "key": "credit_range",
+          "value": "A to B-"
+        },
+        {
+          "key": "startup_businesses",
+          "value": "Yes; start-ups are accepted, with 700+ FICO and additional 10% security deposit noted."
+        },
+        {
+          "key": "collateral_age",
+          "value": "No age restrictions."
+        },
+        {
+          "key": "vehicle_mileage",
+          "value": "No mileage restrictions."
+        },
+        {
+          "key": "turnaround_time",
+          "value": "Expected submission-to-decision turnaround time is 1 business day."
+        },
+        {
+          "key": "financials",
+          "value": "May need 4 months\u2019 bank statements and/or Personal Financial Statement for each personal guarantor."
+        },
+        {
+          "key": "tax_returns",
+          "value": "Not required for applicants with 2 years or more in business unless credit history is limited or has issues. For start-ups, prior year personal taxes will likely be required."
+        },
+        {
+          "key": "bank_statements",
+          "value": "See financials."
+        },
+        {
+          "key": "broker_points_markups",
+          "value": "Broker points/markups are built into the funding amount."
+        },
+        {
+          "key": "docusign",
+          "value": "DocuSign accepted."
+        },
+        {
+          "key": "underwriting_call",
+          "value": "Underwriting call is made on every application prior to final approval."
+        },
+        {
+          "key": "startup_security_deposit",
+          "value": "Additional 10% security deposit for start-ups."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "Non-trucking scope",
+      "reason": "Document is expressly for 'Non-Trucking Applications'; this was modeled as a hard lender-level is_trucking is_false restriction, but the lender may have separate trucking programs not covered by this PDF.",
+      "suggestion": "Confirm whether this profile should decline all trucking or only route trucking deals to another Advantage+ program."
+    },
+    {
+      "item": "Credit range A to B-",
+      "reason": "The catalog has no ABCD credit-tier field. The minimum FICO rules capture the explicit numeric credit requirements only.",
+      "suggestion": "If ABCD grades are used by the underwriting engine, add a credit_grade field or map grades externally."
+    },
+    {
+      "item": "Bankruptcy restriction",
+      "reason": "'Do you finance bankruptcies? No' was modeled as no bankruptcies at all using has_bankruptcy is_false; the document does not specify whether very old discharged bankruptcies are ever acceptable.",
+      "suggestion": "Confirm whether any historical bankruptcy is a decline or only open/recent bankruptcies."
+    },
+    {
+      "item": "Collections and charge-offs timing",
+      "reason": "The document says 'No collections or charge-offs in the past 3 years.' The catalog has has_recent_collections but no charge-off field and no field to measure years since collection/charge-off.",
+      "suggestion": "Confirm the engine definition of has_recent_collections and consider adding charge_off and recency fields."
+    },
+    {
+      "item": "Additional 10% security deposit for start-ups",
+      "reason": "There is no security_deposit_pct field, so the start-up security deposit requirement was placed in program details rather than encoded as a rule.",
+      "suggestion": "Add security_deposit_pct if this requirement must be evaluated automatically."
+    },
+    {
+      "item": "Preferred secondary source(s) of income",
+      "reason": "The document prefers secondary income sources such as working spouse/PG or pension, but the catalog has no field for secondary income source.",
+      "suggestion": "Add a secondary_income_available or household/PG income field if this should be scored."
+    },
+    {
+      "item": "Tax return and financial statement requirements",
+      "reason": "Financials, bank statements, tax returns, PFS requirements and conditions are documentation requirements, not credit-decline rules in the catalog.",
+      "suggestion": "Handle required documents through a documentation workflow rather than credit rules."
+    },
+    {
+      "item": "Charge-offs",
+      "reason": "The document bans charge-offs in the past 3 years, but the catalog does not include a has_charge_offs or years_since_charge_off field.",
+      "suggestion": "Add charge-off fields if automated enforcement is required."
+    }
+  ]
+}

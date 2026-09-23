@@ -1,0 +1,746 @@
+{
+  "lender_name": "Stearns Bank",
+  "contact_name": null,
+  "contact_email": null,
+  "contact_phone": null,
+  "rules": [
+    {
+      "kind": "simple",
+      "label": "Restricted industries",
+      "category": "industry",
+      "severity": "hard",
+      "field": "industry",
+      "operator": "not_in",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": [
+          "gaming_gambling",
+          "hazmat",
+          "oil_gas",
+          "money_services",
+          "adult_entertainment",
+          "real_estate",
+          "weapons_firearms",
+          "beauty_salon",
+          "tattoo_piercing",
+          "restaurant",
+          "car_wash",
+          "trucking"
+        ],
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Restrictions: Gaming/Gambling, Hazmat, Oil & Gas, MSBs, Adult Entertainment, ... OTR"
+    },
+    {
+      "kind": "simple",
+      "label": "US-based business",
+      "category": "geography",
+      "severity": "hard",
+      "field": "is_us_based",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Foreign Country"
+    },
+    {
+      "kind": "simple",
+      "label": "Physical business location",
+      "category": "business",
+      "severity": "hard",
+      "field": "has_physical_location",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "No Physical Location"
+    },
+    {
+      "kind": "simple",
+      "label": "No bankruptcy in last 7 years",
+      "category": "history",
+      "severity": "hard",
+      "field": "years_since_bankruptcy_discharge",
+      "operator": "gte",
+      "value": {
+        "number": 7,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "has_bankruptcy",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "source_quote": "No BK in last 7 years"
+    },
+    {
+      "kind": "any_of",
+      "label": "Comparable debt",
+      "category": "credit",
+      "severity": "hard",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "alternatives": [
+        {
+          "field": "comparable_credit_pct",
+          "operator": "gte",
+          "value": {
+            "number": 100,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "a single open or recently closed account at least the size of the request"
+        },
+        {
+          "field": "comparable_contracts_count",
+          "operator": "gte",
+          "value": {
+            "number": 3,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": "3 or more contracts ($10K minimum) with payment activity in the last 12 months"
+        }
+      ],
+      "applies_when": [],
+      "source_quote": "Comp Debt ..."
+    },
+    {
+      "kind": "simple",
+      "label": "Personal revolving debt ceiling",
+      "category": "credit",
+      "severity": "hard",
+      "field": "revolving_balance",
+      "operator": "lte",
+      "value": {
+        "number": 30000,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "source_quote": "Personal revolving over $30K"
+    },
+    {
+      "kind": "simple",
+      "label": "Revolving + unsecured debt ceiling",
+      "category": "credit",
+      "severity": "hard",
+      "field": "revolving_plus_unsecured_debt",
+      "operator": "lte",
+      "value": {
+        "number": 50000,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "source_quote": "revolving + unsecured debt over $50K"
+    },
+    {
+      "kind": "simple",
+      "label": "Non-essential use equipment",
+      "category": "equipment",
+      "severity": "hard",
+      "field": "equipment_is_essential_use",
+      "operator": "is_true",
+      "value": {
+        "number": null,
+        "text": null,
+        "boolean": null,
+        "options": null,
+        "range": null
+      },
+      "alternatives": [],
+      "applies_when": [],
+      "source_quote": "Non-Essential Use"
+    }
+  ],
+  "programs": [
+    {
+      "name": "Tier 1",
+      "rank": 1,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 725,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 725"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 3"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 685,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Paynet 685"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Tier 2",
+      "rank": 2,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 710,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 710"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 3"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 675,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Paynet 675"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Tier 3",
+      "rank": 3,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_true",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 700,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 700"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 2"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum PayNet",
+          "category": "credit",
+          "severity": "hard",
+          "field": "paynet_score",
+          "operator": "gte",
+          "value": {
+            "number": 665,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "Paynet 665"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Tier 1 (No PayNet)",
+      "rank": 4,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 735,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 735"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 5,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 5"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Tier 2 (No PayNet)",
+      "rank": 5,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 720,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 720"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 3,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 3"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    },
+    {
+      "name": "Tier 3 (No PayNet)",
+      "rank": 6,
+      "description": null,
+      "applies_when": [
+        {
+          "field": "corp_only",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        },
+        {
+          "field": "has_paynet",
+          "operator": "is_false",
+          "value": {
+            "number": null,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "label": null
+        }
+      ],
+      "rules": [
+        {
+          "kind": "simple",
+          "label": "Minimum FICO",
+          "category": "credit",
+          "severity": "hard",
+          "field": "fico_score",
+          "operator": "gte",
+          "value": {
+            "number": 710,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "FICO 710"
+        },
+        {
+          "kind": "simple",
+          "label": "Minimum time in business",
+          "category": "business",
+          "severity": "hard",
+          "field": "years_in_business",
+          "operator": "gte",
+          "value": {
+            "number": 2,
+            "text": null,
+            "boolean": null,
+            "options": null,
+            "range": null
+          },
+          "alternatives": [],
+          "applies_when": [],
+          "source_quote": "TIB 2"
+        }
+      ],
+      "details": [
+        {
+          "key": "note",
+          "value": "Guidelines only; subject to lender discretion."
+        }
+      ]
+    }
+  ],
+  "uncertainties": [
+    {
+      "item": "'OTR' restriction",
+      "reason": "Interpreted as over-the-road trucking and mapped to industry = trucking.",
+      "suggestion": "Confirm with the lender whether local/vocational trucking is also excluded."
+    },
+    {
+      "item": "Corp-only tier table",
+      "reason": "The document has a third table for corp-only requests (PayNet 700/690/680, TIB 10/5/5) that was not modelled here.",
+      "suggestion": "Add three programs with applies_when corp_only is yes."
+    },
+    {
+      "item": "Revolver utilization",
+      "reason": "Read as two ceilings: revolving <= $30K and revolving + unsecured <= $50K (excluding student loans).",
+      "suggestion": "Confirm whether either alone triggers a decline."
+    }
+  ]
+}
