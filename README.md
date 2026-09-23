@@ -1,6 +1,8 @@
 # Lender Matching Platform
 
-Underwrites equipment-finance loan applications against multiple lenders' credit policies and
+Demo Link: https://drive.google.com/file/d/1-UFShvkS0i35SMN8b7ACBkHSg8zpq4KA/view?usp=sharing 
+
+Underwrites loan applications against multiple lenders' credit policies and
 explains, criterion by criterion, who will fund the deal and why. Lender policies are **data,
 not code**: every threshold, exclusion and tier is editable in the UI, and new lenders are
 onboarded from their guideline PDF.
